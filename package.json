@@ -7,5 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "cli-color": "^1.4.0",
+    "gulp": "^4.0.2",
+    "gulp-develop-server": "^0.5.2",
+    "gulp-watch": "^5.0.1"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "chalk": "^2.4.2",
+    "koa": "^2.8.1",
+    "moment": "^2.24.0"
+  }
 }
