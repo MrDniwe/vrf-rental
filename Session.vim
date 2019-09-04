@@ -7,14 +7,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 gulpfile.js
-badd +8 .eslintrc.js
-badd +0 src/index.js
-badd +0 ~/work/verif/rental-verif-backend/.git/index
+badd +3 gulpfile.js
+badd +12 .eslintrc.js
+badd +11 src/index.js
+badd +1 .git/index
+badd +5 .gitignore
+badd +0 .dockerignore
+badd +0 libs/errors.js
 argglobal
 silent! argdel *
-set stal=2
-edit ~/work/verif/rental-verif-backend/.git/index
+edit .git/index
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -31,7 +33,7 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 28 + 30) / 60)
+exe '1resize ' . ((&lines * 29 + 30) / 60)
 exe '2resize ' . ((&lines * 28 + 30) / 60)
 exe 'vert 2resize ' . ((&columns * 119 + 119) / 238)
 exe '3resize ' . ((&lines * 28 + 30) / 60)
@@ -45,11 +47,29 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+let s:l = 1 - ((0 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
+normal! 0
+wincmd w
+argglobal
+if bufexists('libs/errors.js') | buffer libs/errors.js | else | edit libs/errors.js | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 21 - ((10 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+21
 normal! 0
 wincmd w
 argglobal
@@ -63,63 +83,19 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 12 - ((5 * winheight(0) + 14) / 28)
+let s:l = 9 - ((4 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-12
-normal! 031|
-wincmd w
-argglobal
-if bufexists('gulpfile.js') | buffer gulpfile.js | else | edit gulpfile.js | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 3 - ((1 * winheight(0) + 14) / 28)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-3
+9
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 28 + 30) / 60)
+exe '1resize ' . ((&lines * 29 + 30) / 60)
 exe '2resize ' . ((&lines * 28 + 30) / 60)
 exe 'vert 2resize ' . ((&columns * 119 + 119) / 238)
 exe '3resize ' . ((&lines * 28 + 30) / 60)
 exe 'vert 3resize ' . ((&columns * 118 + 119) / 238)
-tabedit .eslintrc.js
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 16 - ((11 * winheight(0) + 16) / 33)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-16
-normal! 024|
 tabnext 1
-set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
